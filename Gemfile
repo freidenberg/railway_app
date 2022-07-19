@@ -83,4 +83,5 @@ gem 'net-pop'
 gem 'bulma-rails'
 gem 'rails_admin'
 gem 'rails-i18n'
+gem 'mini_magick'
 

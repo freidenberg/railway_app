@@ -1,5 +1,18 @@
 <h1>Home#top</h1>
-<h2><strong>ログインしました</strong></h2>
-<%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
+<% if current_user %>
+<h2><strong>ログイン中です</strong></h2>
 
+
+<%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
+<% else %>
+ログインしていません。<br>
+<%= link_to "ログイン", "/users/sign_in" %>
+<% end %>
+<% if user_signed_in? %>
+  <%= button_to "投稿", {controller: 'home', action: 'new'}, {method: :get} %>
+<% end %>
+<% @outputs.each do |output| %>
+    <span>投稿者：</span><%= home.user.name %>
+    <%= output.body %>
+  <% end %>
 
