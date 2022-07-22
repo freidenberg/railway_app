@@ -9,10 +9,5 @@
 <%= link_to "ログイン", "/users/sign_in" %>
 <% end %>
 <% if user_signed_in? %>
-<%= button_to "投稿", { "/home/new"} %>
-<% end %>
-<% @outputs.each do |output| %>
-    <span>投稿者：</span><%= home.user.name %>
-    <%= output.body %>
-  <% end %>
-
+<%= button_to "投稿" %>
+<% end %> 
