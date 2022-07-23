@@ -9,5 +9,5 @@
 <%= link_to "ログイン", "/users/sign_in" %>
 <% end %>
 <% if user_signed_in? %>
-<%= button_to "投稿" %>
+<%= button_to "投稿", "/posts/new", {method: :get} %>
 <% end %> 
