@@ -14,7 +14,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   #デフォルト画像の設定
   def default_url
-    "default.png"　　←デフォルト画像に設定したい画像名を記入
+    "default.png" #←デフォルト画像に設定したい画像名を記入
   end
 
   def extension_allowlist

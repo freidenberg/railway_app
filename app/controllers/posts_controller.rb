@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+    def new
+        @post = Post.new
+    end
     def create
         @post = Post.new(post_params)#データを新規登録するためのインスタンス生成
         @post.save #データをデータベースに保存するためのsaveメソッド実行
