@@ -2,6 +2,9 @@
 <p><%= form.label :body %><br>
 <%= form.text_area :body %> #bodyの入力フォーム生成
 </p>
+<%= f.label :post_image%>
+<%= f.file_field :post_image%>
+<%= f.hidden_field :post_image_cache %>
 
 <p><%= form.submit %> #送信ボタンを生成
 </p>
