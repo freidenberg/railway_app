@@ -9,8 +9,10 @@ class PostsController < ApplicationController
         #redirect_to action: 'index' #トップ画面へリダイレクト
         redirect_to root_path
     end
+    def edit
+      @user.image.cache! unless @user.image.blank?
+    end
   private
-    
   def post_params #ストロングパラメータ
     params.require(:post).permit(:body) #パラメーターのキー
   end
