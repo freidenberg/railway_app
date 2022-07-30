@@ -15,6 +15,6 @@ class PostsController < ApplicationController
     end
   private
   def post_params #ストロングパラメータ
-    params.require(:post).permit(:body,:image) #パラメーターのキー
+    params.require(:post).permit(:body,:image,:image_cache) #パラメーターのキー
   end
 end
