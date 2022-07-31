@@ -11,4 +11,14 @@ class ApplicationController < ActionController::Base
         devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:email])
         devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
     end
+    protect_from_forgery with: :exception
+
+# 共通で使われるヘルパー
+include ApplicationHelper
+# ユーザーセッションの管理やプロフィール画像のURL取得
+include HomeHelper
+# 投稿画像のURL取得
+include PostsHelper
 end
+
+

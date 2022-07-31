@@ -4,10 +4,18 @@
 
 
 <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
+
 <% else %>
 ログインしていません。<br>
 <%= link_to "ログイン", "/users/sign_in" %>
 <% end %>
 <% if user_signed_in? %>
 <%= button_to "投稿", "/posts/new", {method: :get} %>
+<h2>投稿一覧</h2>
+<% @posts.each do |post| %>
+<% end %>
+
+
+
+
 <% end %> 
