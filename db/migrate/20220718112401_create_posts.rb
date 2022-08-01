@@ -5,7 +5,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
      t.text "text"
      t.string "body"
      t.string "image"
-     t.integer "user_id"
+     t.integer "user_id", foreign_key: true
      
      t.timestamps
     end
