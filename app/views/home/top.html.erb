@@ -13,8 +13,7 @@
 <%= button_to "投稿", "/posts/new", {method: :get} %>
 <h2>投稿一覧</h2>
 <% @posts.each do |post| %>
-    <tr>
-     <p><td><%= post.image %></td></p>
+     <p><td><img src = <%= post.image %> ></td></p>
      <p><td><%= post.body %></td></p>
      <p><td><%= post.user_id %></td></p>
      <p><td><%= post.created_at %></td></p>
