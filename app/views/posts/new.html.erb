@@ -4,7 +4,7 @@
 <%= form.text_area :body %> #bodyの入力フォーム生成
 </p>
 <%= form.label :image%>
-<%= form.file_field :image, multiple: true %> #, multiple: true を消すと画像表示が成功する 
+<%= form.file_field :image %> #, multiple: true を消すと画像表示が成功する 
 <%= form.hidden_field :image_cache %>
 <p><%= form.submit %> #送信ボタンを生成
 </p>
