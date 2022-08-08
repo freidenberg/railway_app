@@ -5,8 +5,7 @@ Rails.application.routes.draw do
   get 'home/top'
   devise_for :users
   root to: "home#top"
-  resources :home do
-  end
+  get 'home/show/:id', :to => 'home#show'
   resources :posts do  #postsコントローラへのルーティング  
   resources :comments, only: [:create]  #commentsコントローラへのルーティング
   resources :posts #コメント機能参考記事では posts do と書いている

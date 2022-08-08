@@ -18,8 +18,7 @@
      <p><td><%= post.body %></td></p>
      <p><td><%= post.user_id %></td></p>
      <p><td><%= post.created_at %></td></p>
-     <p><td><%= link_to 'コメント', '/home/show' %>
-     </td></p> 
+     <p><td><%= link_to '投稿詳細ページ', "/home/show/#{post.id}" %></td></p> 
     </tr>
 <% end %>
 <% end %> 
