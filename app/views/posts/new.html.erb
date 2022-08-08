@@ -1,12 +1,13 @@
 <h1>投稿</h1>
 <%= form_with model: @post, local: true do |form| %>
-<p><%= form.label :body %><br>
-<%= form.text_area :body %> #bodyの入力フォーム生成
-</p>
-<%= form.label :image%>
-<%= form.file_field :image %> 
-<%= form.hidden_field :image_cache %>
-<p><%= form.submit %> #送信ボタンを生成
-</p>
+ <p><%= form.label :body %><br>
+  <%= form.text_area :body %> #bodyの入力フォーム生成
+ </p>
+ <%= form.label :image%>
+ <%= form.file_field :image %> 
+ <%= form.hidden_field :image_cache %>
+ <p>
+ <%= form.submit %> #送信ボタンを生成
+ </p>
 
 <% end %>
