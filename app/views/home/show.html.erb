@@ -1,7 +1,10 @@
  <h2> 投稿詳細 </h2>
-
- <p><img src = <%= @post.image %> ></p>
+ <% @post.image.each do |img|%>
+    <%= image_tag img.to_s%>  
+    <%end%>
  <p><%= @post.body %></p>
+
+ 
 	
 <h2> コメントをする </h2>
 <%= form_with(model:[@post, @comment], method: :post) do |f| %>
@@ -10,8 +13,7 @@
 	<%= f.submit 'コメントする' %>
  <% end%>
 	
-	
-<%= link_to 'topへ戻る', root_path %>
+	<%= link_to 'topへ戻る', root_path %>
  <hr>
 <h2> コメント一覧 </h2>
 <% @comments.each do |comment| %>
@@ -19,6 +21,7 @@
  <a href="/users/#{comment.user_id}"><%= comment.user.name %></a>
  <%= comment.comment_content %>
 <% end%>
-    
-	
-  
+
+
+
+

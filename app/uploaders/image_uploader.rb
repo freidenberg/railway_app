@@ -18,7 +18,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   #end
 
   def extension_allowlist
-    %w(jpg jpeg gif png)
+    %w(jpg jpeg gif png heic)
   end
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:

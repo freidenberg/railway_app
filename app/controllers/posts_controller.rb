@@ -14,8 +14,8 @@ class PostsController < ApplicationController
       @user.image.cache! unless @user.image.blank?
     end
   private
-  def post_params #ストロングパラメータ
-    params.require(:post).permit(:body,:image,:image_cache)  
+  def post_params #ストロングパラメーター
+    params.require(:post).permit(:body,{image: []},:image_cache) 
   end
 end  
   
