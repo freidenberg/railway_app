@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   get 'home/show/:id', :to => 'home#show'
   resources :posts do  #postsコントローラへのルーティング  
   resources :comments, only: [:create]  #commentsコントローラへのルーティング
-  resources :posts #コメント機能参考記事では posts do と書いている
+  resource :likes, only: [:create, :destroy]
+  #resources :posts コメント機能参考記事では posts do と書いている
   #resources :comments, only: [:create] 
   resource :bookmarks, only: [:create, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

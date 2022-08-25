@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
        
         if @comment.save
           redirect_back(fallback_location: root_path)  #コメント送信後は、一つ前のページへリダイレクトさせる。
-        else
+         else
           redirect_back(fallback_location: root_path)  #同上
         end
       end

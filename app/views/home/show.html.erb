@@ -1,20 +1,31 @@
- <h2> 投稿詳細 </h2>
+<h2> 投稿詳細 </h2>
  <% @post.image.each do |img|%>
     <%= image_tag img.to_s%>  
     <%end%>
  <p><%= @post.body %></p>
 
+ <% if @post.liked?(current_user) %>
+  <%= link_to post_likes_path(@post.id), method: :delete do %>
+     <span style="color:red;">❤︎</span>
+  <% end %>
+  <% else %>
  
+  <%= link_to post_likes_path(@post.id), method: :post do %>
+    <span>❤︎</span>
+ <% end %>
+<% end %>
+
 	
 <h2> コメントをする </h2>
 <%= form_with(model:[@post, @comment], method: :post) do |f| %>
 	<%= f.text_area :comment_content %>
 	<%= f.hidden_field :post_id, value: @post.id %>
 	<%= f.submit 'コメントする' %>
- <% end%>
+<% end%>
 	
 	<%= link_to 'topへ戻る', root_path %>
- <hr>
+ <hr> 
+
 <h2> コメント一覧 </h2>
 <% @comments.each do |comment| %>
  <hr>
@@ -22,6 +33,11 @@
  <%= comment.comment_content %>
 <% end%>
 
+<% if  @post_like.present? %>
+  <h1>早くエラーなおれ</h1>
+  <% else %>
+  <h1>中身がありません</h1>
+<%end%>  
 
 
 
