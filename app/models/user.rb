@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+  mount_uploader :image, ImageUploader
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          has_many :posts, dependent: :destroy
@@ -15,7 +18,7 @@ class User < ApplicationRecord
         # 一覧画面で使う
         has_many :followings, through: :relationships, source: :followed
         has_many :followers, through: :reverse_of_relationships, source: :follower
-       
+
         # フォローしたときの処理
       def follow(user_id)
          relationships.create(followed_id: user_id)
