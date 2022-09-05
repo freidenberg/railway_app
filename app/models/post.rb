@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
     belongs_to :user
-    mount_uploaders :image, ImageUploader #_uploaders←複数形
+    mount_uploaders :image, ImageUploader 
+    mount_uploader :line_tag, ImageUploader
     serialize :image,JSON
     has_many_attached :image
     has_many :comments, dependent: :destroy 
