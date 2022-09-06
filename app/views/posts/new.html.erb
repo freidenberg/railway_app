@@ -7,12 +7,11 @@
  <%= form.file_field :image, multiple: true %> 
  <%= form.hidden_field :image_cache %>
 
-<%= form.collection_check_boxes(:lines_tag_ids, LinesTag.all, :id, :name) do |tag| %>
-    <%= lines_tag.label class: 'form-check-label' do %>
-            <%= lines_tag.check_box class: 'form-check-input' %>
-            <%= lines_tag.text %>
-    <% end %> 
-<% end %>
+ <% LinesTag.all.each do |tagpics|%>
+    test
+    <%= tagpics.image.to_s%>
+ <%end%>
+    
 
 
  <p>
