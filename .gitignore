@@ -19,6 +19,7 @@
 !/tmp/pids/.keep
 
 # Ignore uploaded files in development.
+/public/uploads/
 /storage/*
 !/storage/.keep
 
@@ -35,5 +36,4 @@
 yarn-debug.log*
 .yarn-integrity
 
-#Ignore uploaded files in development
- /public/uploads/
+
