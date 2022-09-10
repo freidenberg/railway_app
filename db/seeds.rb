@@ -19,4 +19,3 @@ LinesTag.create!([
   { image:"./public/JRmarks/t.png", name: '高徳線' },
   { image:"./public/JRmarks/st.png", name: '瀬戸大橋線' }
 ])
-
