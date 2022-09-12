@@ -4,6 +4,10 @@
     <%end%>
  <p><%= @post.body %></p>
 
+ <% @post.lines_tag.each do |lines_tag| %>
+   <span><%= lines_tag.name %><br></span>
+<% end %>
+
  <% if @post.liked?(current_user) %>
   <%= link_to post_likes_path(@post.id), method: :delete do %> <%= @post.likes.count %>
      <span style="color:red;">❤︎</span>

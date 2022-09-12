@@ -11,6 +11,14 @@
 <% end %>
 <% if user_signed_in? %>
  <%= button_to "投稿", "/posts/new", {method: :get} %>
+
+ <%= form_tag({controller:"home",action:"top"}, method: :get) do %>
+  <% LinesTag.all.each do |t| %>
+    <li><%= check_box :lines_tag_ids, t.name %><%= t.name %></li>
+  <% end %>
+  <%= submit_tag '検索' %>
+<% end %>
+
  <h2>投稿一覧</h2><br>
   <% @posts.each do |post| %>
       <tr>

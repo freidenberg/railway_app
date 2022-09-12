@@ -2,6 +2,15 @@ class HomeController < ApplicationController
   def top
     @posts = Post.all.order("id desc")
     #@posts = current_user.posts.all.order("id desc")
+    if params[:lines_tag_ids]
+      @posts = []
+      params[:lines_tag_ids].each do |key, value|
+        if value == "1"
+          lines_tag_posts = LinesTag.find_by(name: key).posts
+          @posts = @posts.empty? ? lines_tag_posts : @posts & lines_tag_posts
+        end
+      end
+    end
   end
 
   def show

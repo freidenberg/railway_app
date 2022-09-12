@@ -5,7 +5,7 @@
  </p>
  <%= form.label :image%>
  <%= form.file_field :image, multiple: true %> 
- <%= form.hidden_field :image_cache %>
+ <%= form.hidden_field :image_cache %><br>
 
   <%= form.collection_check_boxes(:lines_tag_ids, LinesTag.all, :id, :image) do |line_tag| %>
      <img src = "<%= line_tag.object.image %>">
