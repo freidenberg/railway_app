@@ -11,6 +11,15 @@ class HomeController < ApplicationController
         end
       end
     end
+    if params[:genre_tag_ids]
+      @posts = []
+      params[:genre_tag_ids].each do |key, value|
+        if value == "1"
+          genre_tag_posts = GenreTag.find_by(name: key).posts
+          @posts = @posts.empty? ? genre_tag_posts : @posts & genre_tag_posts
+        end
+      end
+    end
   end
 
   def show

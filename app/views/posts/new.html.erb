@@ -11,6 +11,10 @@
      <img src = "<%= line_tag.object.image %>">
      <%= line_tag.check_box class: 'form-check-input' %>
   <% end %>
+
+  <%= form.collection_check_boxes(:genre_tag_ids, GenreTag.all, :id,) do |genre_tag| %>
+   <%= genre_tag.check_box class: 'form-check-input' %>
+  <% end %>
     
 
 

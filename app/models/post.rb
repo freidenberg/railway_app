@@ -8,8 +8,9 @@ class Post < ApplicationRecord
     has_many :likes, dependent: :destroy
     has_many :bookmarks, dependent: :destroy
     has_many :line_tag_relations, dependent: :destroy
-    #ぽstsテーブルから中間テーブルを介してTagsテーブルへの関連付け
     has_many :lines_tag, through: :line_tag_relations, dependent: :destroy
+    has_many :genre_tag_relations, dependent: :destroy
+    has_many :genre_tags, through: :genre_tag_relations, dependent: :destroy
     def liked?(user)
         likes.where(user_id: user.id).exists?
     end

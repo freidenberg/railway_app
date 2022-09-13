@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     end
   private
   def post_params #ストロングパラメーター
-    params.require(:post).permit(:body,{image: []},:image_cache,lines_tag_ids:[]) 
+    params.require(:post).permit(:body,{image: []},:image_cache,lines_tag_ids:[],genre_tag_ids:[]) 
   end
 end  
   

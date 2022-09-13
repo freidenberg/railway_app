@@ -18,3 +18,9 @@ LinesTag.create!([
   { image:"/JRmarks/t.png", name: '高徳線' },
   { image:"/JRmarks/st.png", name: '瀬戸大橋線' }
 ])
+
+GenreTag.create([
+  { name: 'JR四国応援会議' },
+  { name: '旅の思い出' },
+  { name: '旅の日程' },
+])
