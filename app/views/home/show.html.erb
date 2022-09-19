@@ -9,7 +9,7 @@
 <% end %>
 
 <% @post.genre_tags.each do |genre_tags| %>
-   <span><%= genre_tag.name %><br></span>
+   <span><%= genre_tags.name %><br></span>
 <% end %>
 
  <% if @post.liked?(current_user) %>
