@@ -7,11 +7,9 @@
  <% @post.lines_tag.each do |lines_tag| %>
    <span><%= lines_tag.name %><br></span>
 <% end %>
-
 <% @post.genre_tags.each do |genre_tags| %>
    <span><%= genre_tags.name %><br></span>
 <% end %>
-
  <% if @post.liked?(current_user) %>
   <%= link_to post_likes_path(@post.id), method: :delete do %> <%= @post.likes.count %>
      <span style="color:red;">❤︎</span>
@@ -39,12 +37,8 @@
  <a href="/users/#{comment.user_id}"><%= comment.user.name %></a>
  <%= comment.comment_content %>
 <% end%>
-
 <% if  @post_like.present? %>
   <h1>早くエラーなおれ</h1>
   <% else %>
   <h1>中身がありません</h1>
 <%end%>  
-
-
-
