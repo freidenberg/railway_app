@@ -5,19 +5,18 @@ Rails.application.routes.draw do
   get 'home/top'
   devise_for :users
   root to: "home#top"
+  get 'home/mypage'
   get 'home/show/:id', :to => 'home#show'
   resources :posts do  #postsコントローラへのルーティング  
-  resources :comments, only: [:create]  #commentsコントローラへのルーティング
-  resource :likes, only: [:create, :destroy]
-  #resources :posts コメント機能参考記事では posts do と書いている
-  #resources :comments, only: [:create] 
-  resource :bookmarks, only: [:create, :destroy]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :users do
-    resource :relationships, only: [:create, :destroy]
-    get 'followings' => 'relationships#followings', as: 'followings'
-    get 'followers' => 'relationships#followers', as: 'followers'
- end
-end
+   resources :comments, only: [:create]  #commentsコントローラへのルーティング
+   resource :likes, only: [:create, :destroy]
+   resource :bookmarks, only: [:create, :destroy]
+   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+   resources :users do
+     resource :relationships, only: [:create, :destroy]
+     get 'followings' => 'relationships#followings', as: 'followings'
+     get 'followers' => 'relationships#followers', as: 'followers'
+   end
+  end
 end 
 

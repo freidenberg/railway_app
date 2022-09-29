@@ -29,6 +29,10 @@ class HomeController < ApplicationController
     @comment_reply = @post.comments.build #コメントに対する返信用の変数
   end
 
+  def mypage 
+    @bookmarks = Bookmark.where(user_id: current_user.id)  
+  end   
+
 
   def create
     @post = current_user.posts.new(post_params)
