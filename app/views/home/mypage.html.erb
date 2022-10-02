@@ -7,18 +7,10 @@
       <th>本文</th>
     </tr>
   </thead>
-  <tbody>
-    <% @bookmarks.each do |bookmark| %>
-      <tr>
-        <td><%= bookmark.post.user.name %></td>
-        <td><%= bookmark.post.body %></td>
-        <td>
-          <%= link_to post_path(bookmark.post) do %>
-            <%= bookmark.post.body %>
-          <% end %>
-        </td>
-        <td><%= bookmark.post.body %></td>
-      </tr>
+  <%= @bookmarks.each do |bookmark| %>
+    <% @post = Post.find_by(id: bookmark.post_id) %>
+    <% @comments = Comment.where(post_id: @post.id) %>
+    <% @comments.each do |comment| %>
+     <%= comment.comment_content %>
     <% end %>
-  </tbody>
-</table> 
+  <% end %> 
