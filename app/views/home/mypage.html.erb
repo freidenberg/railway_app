@@ -5,12 +5,19 @@
       <th>投稿者名</th>
       <th>タイトル</th>
       <th>本文</th>
+      <th><%= link_to 'topへ戻る', root_path %></th>
     </tr>
   </thead>
-  <%= @bookmarks.each do |bookmark| %>
-    <% @post = Post.find_by(id: bookmark.post_id) %>
+  
+<%= @bookmarks.each do |bookmark| %>
+    <% @post = Post.find_by(id: bookmark.post_id) %> 
+    <% @post.image.each do |img|%>
+        <%= image_tag img.to_s%>  
+        <%end%>    
+        <%= @post.body %>
+
     <% @comments = Comment.where(post_id: @post.id) %>
     <% @comments.each do |comment| %>
      <%= comment.comment_content %>
     <% end %>
-  <% end %> 
+<% end %> 
