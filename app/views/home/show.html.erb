@@ -45,15 +45,38 @@
    <a href="/users/#{comment.user_id}"><%= comment.user.name %></a>
    <%= comment.comment_content %>
    
- <%= form_with(model:[@post,@comment_reply]) do |form| %>
-       <p><label>Reply</label></p>
-       <textarea class="form-control input-form" name="comment[comment_content]" rows="2"><%=@comment_reply.comment_content %>
-       <%=@comment_reply.comment_content %></textarea>
-       <%= form.hidden_field :post_id,value: @post.id %>
-       <%= form.hidden_field :parent_id,value: comment.id %>
-       <%= form.submit %>
-       <% end%>
-<% end%>
+   
+   <div id="comments_area">
+   <h2>comments</h2>
+   <% @comments.each do |comment| %> 
+     <% if comment.parent_id.present? || comment.id.blank? %>
+       <% next %>
+     <% end %>
+       <hr>
+       <p> <%= comment.user.name %> :<%=comment.comment_content%> </p>
+       <p> date : <%=comment.created_at.strftime("%Y-%m-%d %H:%M") %>
+     <div id="reply_area">
+         <% comment.replies.order(:created_at).each do |reply| %>
+            <p> <%= comment.user.name %> : <%=reply.comment_content%></p>
+         <% end %>
+     </div>
+       <%= form_with(model:[@post,@comment_reply]) do |form| %>
+          <div class="row">
+               <div class="form-group col-md-6">
+                  <p><label>Reply</label></p>
+                   <textarea class="form-control input-form" name="comment[comment_content]" rows="2">
+                   <%=@comment_reply.comment_content%></textarea>
+               </div>
+          </div>
+          <%= form.hidden_field :post_id, value: @post.id %>
+          <%= form.hidden_field :parent_id, value: comment.id%>
+          <div class="actions">
+             <%= form.submit %>
+          </div>
+     <% end %>
+  <% end %>
+  </div>
+<% end %>
 
 <% if  @post_like.present? %>
   <h1>早くエラーなおれ</h1>
