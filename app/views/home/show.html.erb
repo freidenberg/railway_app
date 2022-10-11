@@ -41,9 +41,7 @@
 
 <h2> コメント一覧 </h2>
 
-<% @comments.each do |comment| %><hr>
-   <a href="/users/#{comment.user_id}"><%= comment.user.name %></a>
-   <%= comment.comment_content %>
+
    
    
    <div id="comments_area">
@@ -76,10 +74,17 @@
      <% end %>
   <% end %>
   </div>
-<% end %>
+
 
 <% if  @post_like.present? %>
   <h1>早くエラーなおれ</h1>
   <% else %>
   <h1>中身がありません</h1>
 <%end%>  
+
+
+
+
+
+
+
