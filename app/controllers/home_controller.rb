@@ -31,6 +31,7 @@ class HomeController < ApplicationController
 
   def mypage 
     @bookmarks = Bookmark.where(user_id: current_user.id)  
+    @user = User.find(params[:id])
   end   
 
 

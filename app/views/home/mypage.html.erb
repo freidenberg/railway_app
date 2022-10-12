@@ -10,6 +10,7 @@
   </thead>
   
   
+  
   <% @bookmarks.each do |bookmark| %>
     <% @post = Post.find_by(id: bookmark.post_id) %> 
     <% @post.image.each do |img|%>
