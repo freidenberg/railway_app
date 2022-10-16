@@ -6,11 +6,10 @@
       <th>タイトル</th>
       <th>本文</th>
       <th><%= link_to 'topへ戻る', root_path %></th>
+      <br><th><%= @user.name %></th>
     </tr>
   </thead>
-  
-  
-  
+
   <% @bookmarks.each do |bookmark| %>
     <% @post = Post.find_by(id: bookmark.post_id) %> 
     <% @post.image.each do |img|%>

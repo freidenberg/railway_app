@@ -2,18 +2,21 @@ class HomeController < ApplicationController
   def top
     @posts = Post.all.order("id desc")
     #@posts = current_user.posts.all.order("id desc")
-    if params[:lines_tag_ids]
+    if  params[:lines_tag_ids]
+      logger.debug("デバッグ")
       @posts = []
+      #binding.pry
       params[:lines_tag_ids].each do |key, value|
-        if value == "1"
+       if value == "1"
           lines_tag_posts = LinesTag.find_by(name: key).posts
           @posts = @posts.empty? ? lines_tag_posts : @posts & lines_tag_posts
         end
       end
     end
-    if params[:genre_tag_ids]
+    if  params[:genre_tag_ids]
+      logger.debug("デバッグ")
       @posts = []
-      params[:genre_tag_ids].each do |key, value|
+      params[:genre_tag_ids].each do |key, value| 
         if value == "1"
           genre_tag_posts = GenreTag.find_by(name: key).posts
           @posts = @posts.empty? ? genre_tag_posts : @posts & genre_tag_posts
@@ -30,8 +33,10 @@ class HomeController < ApplicationController
   end
 
   def mypage 
-    @bookmarks = Bookmark.where(user_id: current_user.id)  
-    @user = User.find(params[:id])
+    @bookmarks = Bookmark.where(user_id: current_user.id)   
+    @user = User.find(params[:user_id])
+     
+    logger.debug("デバッグ")          
   end   
 
 

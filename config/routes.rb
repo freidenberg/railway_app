@@ -9,14 +9,14 @@ Rails.application.routes.draw do
   get 'home/show/:id', :to => 'home#show'
   resources :posts do  #postsコントローラへのルーティング  
    resources :comments, only: [:create]  #commentsコントローラへのルーティング
-   resource :likes, only: [:create, :destroy]
-   resource :bookmarks, only: [:create, :destroy]
+   resources :likes, only: [:create, :destroy]
+   resources :bookmarks, only: [:create, :destroy]
+  end
    # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
    resources :users do
-     resource :relationships, only: [:create, :destroy]
+     resources :relationships, only: [:create, :destroy]
      get 'followings' => 'relationships#followings', as: 'followings'
      get 'followers' => 'relationships#followers', as: 'followers'
    end
-  end
 end 
 
