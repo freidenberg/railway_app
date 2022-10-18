@@ -1,26 +1,30 @@
+
 <table>
-  <caption>ブックマーク一覧</caption>
-  <thead>
-    <tr>
-      <th>投稿者名</th>
-      <th>タイトル</th>
-      <th>本文</th>
-      <th><%= link_to 'topへ戻る', root_path %></th>
-      <br><th><%= @user.name %></th>
-    </tr>
-  </thead>
-
-  <% @bookmarks.each do |bookmark| %>
-    <% @post = Post.find_by(id: bookmark.post_id) %> 
-    <% @post.image.each do |img|%>
-        <%= image_tag img.to_s%>   
-    <%end%>   
-    <p><%= @post.body %></p>
-
-    <% @comments = Comment.where(post_id: @post.id) %>
-    <% @comments.each do |comment| %>
-        <a href="/users/#{comment.user_id}"><%= comment.user.name %></a>
-        <%= comment.comment_content %>
+<caption>ブックマーク一覧</caption>
+<thead>
+  <tr>
+    <th>投稿者名</th>
+    <th>タイトル</th>
+    <th>本文</th>
+    <th><%= link_to 'topへ戻る', root_path %></th>
+    <br><th><%= @user.name %></th>
     <% end %>
-    <% end %>
-    
+  </tr>
+</thead>
+
+<% @bookmarks.each do |bookmark| %>
+  <% @post = Post.find_by(id: bookmark.post_id) %> 
+  <% @post.image.each do |img|%>
+      <%= image_tag img.to_s%>   
+  <%end%>   
+  <p><%= @post.body %></p>
+
+  <% @comments = Comment.where(post_id: @post.id) %>
+  <% @comments.each do |comment| %>
+      <a href="/users/#{comment.user_id}"><%= comment.user.name %></a>
+      <%= comment.comment_content %>
+  <% end %>
+  <% end %>
+  
+
+
