@@ -9,7 +9,8 @@
     <th><%= link_to 'topへ戻る', root_path %></th>
   </tr>
 </thead>
-<%= @username %>
+<p>名前 : <%= @user.name %></p>
+<p>メールアドレス : <%= @user.email %></p>
 
 <% @bookmarks.each do |bookmark| %>
   <% @post = Post.find_by(id: bookmark.post_id) %> 

@@ -3,10 +3,13 @@ Rails.application.routes.draw do
   get 'relationships/followers'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'home/top'
+  resources :home, only: [:mypage]
   devise_for :users
   root to: "home#top"
   get 'home/mypage'
   get 'home/show/:id', :to => 'home#show'
+  
+ 
   resources :posts do  #postsコントローラへのルーティング  
    resources :comments, only: [:create]  #commentsコントローラへのルーティング
    resource :likes, only: [:create, :destroy]
