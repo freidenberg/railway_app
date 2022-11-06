@@ -4,7 +4,9 @@
 
 
  <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
- <%= link_to "マイページ", home_mypage_path %> 
+ <%= link_to "マイページ", mypage_path(current_user.id) %> 
+
+
  <% else %>
   ログインしていません。<br>
  <%= link_to "ログイン", "/users/sign_in" %> 

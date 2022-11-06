@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   get 'home/top'
   resources :home, only: [:mypage]
   devise_for :users
-  root to: "home#top"
-  get 'home/mypage'
+  root to: "home#top/:id", :to => 'home#top'
+  get 'home/mypage/:id', :to => 'home#mypage',  as: :mypage 
+  get 'home/user/:id', :to => 'home#user', as: :userpage 
+  #get 'home/mypage'
   get 'home/show/:id', :to => 'home#show'
   
  

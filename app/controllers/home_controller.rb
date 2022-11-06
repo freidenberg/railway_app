@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def top
     @posts = Post.all.order("id desc")
+    #@user = User.find(params[:id])
     #@posts = current_user.posts.all.order("id desc")
     if params[:lines_tag_ids]
       # lines_tag_idsの中でチェックをしたものだけ取得して変数に格納
@@ -32,6 +33,7 @@ class HomeController < ApplicationController
     end
   end 
   def show 
+    #@user = User.find(params[:id])
     @post = Post.find(params[:id])
     @comments = @post.comments.includes(:user).all #投稿詳細に関連付けてあるコメントを全取得
     @comment = current_user.comments.new  #投稿詳細画面でコメントの投稿を行うので、formのパラメータ用にCommentオブジェクトを取得
@@ -40,11 +42,15 @@ class HomeController < ApplicationController
 
   def mypage 
     @bookmarks = Bookmark.where(user_id: current_user.id)   
-   
-    @username = current_user.name   
-     
+    @user = User.find(params[:id])
+    #@username = current_user.name   
     logger.debug("デバッグ")          
   end   
+
+def user
+  @user = User.find(params[:id])
+end  
+
 
 
   def create
@@ -61,5 +67,3 @@ class HomeController < ApplicationController
     params.require(:post).permit(:post_content)
   end
 end  
-
-  

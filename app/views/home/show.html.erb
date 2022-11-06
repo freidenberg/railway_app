@@ -1,18 +1,20 @@
 <h2> 投稿詳細 </h2>
- <% @post.image.each do |img|%>
-    <%= image_tag img.to_s%>  
-    <%end%>
- <p><%= @post.body %></p>
+<% @post.image.each do |img|%>
+    投稿者<%= @post.user.name%>
+    <a href="/home/user/<%= @post.user_id%>"><%= @post.user.name%></a>
+    <%= image_tag img.to_s%>
+<%end%>
+<p><%= @post.body %></p>
 
- <% @post.lines_tag.each do |lines_tag| %>
+<% @post.lines_tag.each do |lines_tag| %>
    <span><%= lines_tag.name %><br></span>
- <% end %>
+<% end %>
 
 <% @post.genre_tags.each do |genre_tags| %>
    <span><%= genre_tags.name %><br></span>
 <% end %>
 
- <% if @post.liked?(current_user) %>
+<% if @post.liked?(current_user) %>
   <%= link_to post_likes_path(@post.id), method: :delete do %> <%= @post.likes.count %>
      <span style="color:red;">❤︎</span>
   <% end %>
@@ -75,7 +77,7 @@
   <% end %>
   </div>
 
-
+  
 <% if  @post_like.present? %>
   <h1>早くエラーなおれ</h1>
   <% else %>
