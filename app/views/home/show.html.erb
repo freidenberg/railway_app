@@ -1,7 +1,6 @@
 <h2> 投稿詳細 </h2>
 <% @post.image.each do |img|%>
-    投稿者<%= @post.user.name%>
-    <a href="/home/user/<%= @post.user_id%>"><%= @post.user.name%></a>
+    投稿者<a href="/home/user/<%= @post.user_id%>"><%= @post.user.name%></a>
     <%= image_tag img.to_s%>
 <%end%>
 <p><%= @post.body %></p>

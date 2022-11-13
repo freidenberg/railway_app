@@ -10,6 +10,8 @@
   </tr>
 </thead>
 <p>名前<p>名前 : <%= @user.name %></p></p>
+<p><%= link_to @user.followings.count,user_followings_path(@user)%> フォロー <%= link_to @user.followers.count, user_followers_path(@user) %> フォロワー</p>
+
 
 
 <% @bookmarks.each do |bookmark| %>
@@ -19,11 +21,7 @@
   <%end%>   
   <p><%= @post.body %></p>
 
-  <% @comments = Comment.where(post_id: @post.id) %>
-  <% @comments.each do |comment| %>
-      <a href="/users/#{comment.user_id}"><%= comment.user.name %></a>
-      <%= comment.comment_content %>
-  <% end %>
+  
   <% end %>
   
 

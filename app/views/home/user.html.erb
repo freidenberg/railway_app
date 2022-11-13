@@ -1,5 +1,7 @@
 <%= @user.name %>
 
+<p><%= link_to @user.followings.count,user_followings_path(@user)%> フォロー <%= link_to @user.followers.count, user_followers_path(@user) %> フォロワー</p>
+
 <% if @user == current_user %>
   <p class="lead text-muted">You're currently signed in as <%= current_user.email %></p>
   <% else %>
