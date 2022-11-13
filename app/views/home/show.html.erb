@@ -42,9 +42,6 @@
 
 <h2> コメント一覧 </h2>
 
-
-   
-   
    <div id="comments_area">
    <h2>comments</h2>
    <% @comments.each do |comment| %> 
@@ -52,7 +49,7 @@
        <% next %>
      <% end %>
        <hr>
-       <p> <%= comment.user.name %> :<%=comment.comment_content%> </p>
+       <p> <a href="/home/user/<%= @post.user_id%>"><%= comment.user.name %></a> :<%=comment.comment_content%> </p>
        <p> date : <%=comment.created_at.strftime("%Y-%m-%d %H:%M") %>
      <div id="reply_area">
          <% comment.replies.order(:created_at).each do |reply| %>
