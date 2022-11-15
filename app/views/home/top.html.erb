@@ -4,7 +4,8 @@
 
 
  <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
- <%= link_to "マイページ", mypage_path(current_user.id) %> 
+ <%= link_to "ブックマーク", mypage_path(current_user.id) %> 
+ <%= link_to "マイページ", userpage_path(current_user.id) %> 
 
 
  <% else %>
@@ -33,7 +34,7 @@
         <% end %> 
         <p><td><%= post.body %></td></p>
         <p><td><%= post.user_id %></td></p>
-        <p><td><%= post.created_at %></td></p> 
+        <p><td><%= post.created_at %></td></p>
         <p><td><%= link_to '投稿詳細ページ', "/home/show/#{post.id}" %></td></p> 
         <hr>
       </tr>

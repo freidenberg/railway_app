@@ -1,18 +1,6 @@
 
-<table>
-<caption>ブックマーク一覧</caption>
-<thead>
-  <tr>
-    <th>投稿者名</th>
-    <th>タイトル</th>
-    <th>本文</th>
-    <th><%= link_to 'topへ戻る', root_path %></th>
-  </tr>
-</thead>
-<p>名前<p>名前 : <%= @user.name %></p></p>
-<p><%= link_to @user.followings.count,user_followings_path(@user)%> フォロー <%= link_to @user.followers.count, user_followers_path(@user) %> フォロワー</p>
-
-
+<h1>ブックマーク一覧</h1>
+<%= link_to 'topへ戻る', root_path %>
 
 <% @bookmarks.each do |bookmark| %>
   <% @post = Post.find_by(id: bookmark.post_id) %> 
@@ -20,9 +8,8 @@
       <%= image_tag img.to_s%>   
   <%end%>   
   <p><%= @post.body %></p>
-
+  <p><%= link_to '投稿詳細ページ', "/home/show/#{@post.id}" %></p>
+<% end %>
   
-  <% end %>
-  
-
+<%= link_to 'topへ戻る', root_path %>
 

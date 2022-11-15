@@ -1,9 +1,9 @@
 <h2> 投稿詳細 </h2>
 <% @post.image.each do |img|%>
-    投稿者<a href="/home/user/<%= @post.user_id%>"><%= @post.user.name%></a>
+    
     <%= image_tag img.to_s%>
 <%end%>
-<p><%= @post.body %></p>
+<p>投稿者<a href="/home/user/<%= @post.user_id%>"><%= @post.user.name%></a><br><%= @post.body %></p>
 
 <% @post.lines_tag.each do |lines_tag| %>
    <span><%= lines_tag.name %><br></span>

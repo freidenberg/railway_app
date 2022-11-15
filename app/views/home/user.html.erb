@@ -1,17 +1,31 @@
 <%= @user.name %>
 
 <p><%= link_to @user.followings.count,user_followings_path(@user)%> フォロー <%= link_to @user.followers.count, user_followers_path(@user) %> フォロワー</p>
-
+<%= link_to 'topへ戻る', root_path %>
 <% if @user == current_user %>
-  <p class="lead text-muted">You're currently signed in as <%= current_user.email %></p>
+  <p>You're currently signed in as <%= current_user.email %></p>
   <% else %>
+
   <% if current_user.following?(@user) %>
-  <%= link_to  user_relationships_path(@user.id), method: :delete do %>
-    <button class="btn btn-danger">フォロー解除</button>
-  <% end %>
-   <% else %>
+     <%= link_to  user_relationships_path(@user.id), method: :delete do %>
+        <button>フォロー解除</button>
+      <% end %>
+      <% else %>
       <%= link_to user_relationships_path(@user.id), method: :post do %>
-          <button class="btn btn-primary">フォロー</button>
+        <button>フォロー</button>
       <% end %>
   <% end %>
 <% end %>
+
+<% @user.posts.each do |post| %>
+  <tr>
+     <% post.image.each do |img|%>
+       <%= image_tag img.to_s%>
+      <% end %> 
+      <p><td><%= post.body %></td></p>
+      <p><td><%= link_to '投稿詳細ページ', "/home/show/#{post.id}" %></td></p>
+   </tr>
+<% end %>
+
+
+

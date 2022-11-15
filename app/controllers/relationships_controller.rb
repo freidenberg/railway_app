@@ -17,7 +17,7 @@ class RelationshipsController < ApplicationController
   # フォロー一覧
   def followings
     user = User.find(params[:user_id])
-    @users = user.followings
+    @users = user.followings#.where.not(user: 'current_user')
   end
   # フォロワー一覧
   def followers
