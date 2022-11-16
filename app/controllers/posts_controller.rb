@@ -13,6 +13,21 @@ class PostsController < ApplicationController
     def edit
       @user.image.cache! unless @user.image.blank?
     end
+
+    def change
+      @post = Post.find(params[:id])
+    end 
+    
+    def update
+      @post = Post.find(params[:id])
+    # 編集ページの送信ボタンから飛んできたときのparamsに格納されたidを元に、該当する投稿データを探して、変数に代入する
+      if @post.update(post_params)
+        redirect_to post_path, notice: "アウトプットを編集しました"
+      else
+        flash.now[:danger] = "編集に失敗しました"
+        render 'edit'
+      end
+    end
   private
   def post_params #ストロングパラメーター
     params.require(:post).permit(:body,{image: []},:image_cache,lines_tag_ids:[],genre_tag_ids:[]) 
