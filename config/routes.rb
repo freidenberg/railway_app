@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'home/top'
   resources :home, only: [:mypage]
+  
   devise_for :users
   root to: "home#top/:id", :to => 'home#top'
   get 'home/mypage/:id', :to => 'home#mypage',  as: :mypage 

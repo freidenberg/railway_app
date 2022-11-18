@@ -14,16 +14,16 @@
                       <% @users.each do |user| %>
                           <tr>
                              <td>
-                                  #<% if user != current_user %>
+                             
                                        <%= link_to userpage_path(user) do %>
                                           <%= user.name %>
                                       <% end %>
-                                  #<% end %>
+                                  
                               </td>
                               <td>
                                   <% if user != current_user %>
 
-                                       <% if current_user.following?(user) %>
+                                  <% if current_user.following?(user) %>
                                            <%=link_to user_relationships_path(user), method: :delete do %>
                                                 <button>フォロー解除</button>
                                            <% end %>
