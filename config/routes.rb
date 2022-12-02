@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'home/top'
   resources :home, only: [:mypage]
   
+  resource :profile,only: %i[edit update]
+  
   devise_for :users
   root to: "home#top/:id", :to => 'home#top'
   get 'home/mypage/:id', :to => 'home#mypage',  as: :mypage 
@@ -12,7 +14,6 @@ Rails.application.routes.draw do
   
   resources :users do
     resource :relationships, only: [:create, :destroy]
-    resource :profile,only: %i[ edit update]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
   end

@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
         before_action :set_user,only: %i[edit update]
     
         def edit
+            @user = User.find(current_user.id)
         end
     
         def update
