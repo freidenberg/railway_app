@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   get 'home/top'
   resources :home, only: [:mypage]
   
-  resource :profile,only: %i[edit update]
-  
+  resource :profile,only: %i[edit update] do
+    post '/profile/:id', to: 'profile#update'
+  end 
+
   devise_for :users
   root to: "home#top/:id", :to => 'home#top'
   get 'home/mypage/:id', :to => 'home#mypage',  as: :mypage 
