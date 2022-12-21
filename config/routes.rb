@@ -3,9 +3,8 @@ Rails.application.routes.draw do
   get 'home/top'
   resources :home, only: [:mypage]
   
-  resource :profile,only: %i[edit update] do
-    post '/profile/:id', to: 'profile#update'
-  end 
+ get "profile/edit", to: "profiles#edit", as: "edit_profile"
+ patch "/profile", to: "profiles#update"
 
   devise_for :users
   root to: "home#top/:id", :to => 'home#top'

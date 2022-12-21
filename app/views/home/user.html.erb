@@ -1,5 +1,7 @@
-<%= @user.name %>
 
+-------<br>
+
+<%= @user.name %> 
 <p><%= link_to @user.followings.count,user_followings_path(@user)%> フォロー <%= link_to @user.followers.count, user_followers_path(@user) %> フォロワー</p>
 <%= link_to 'topへ戻る', root_path %>
 <% if @user == current_user %>
@@ -12,7 +14,7 @@
         </tr>
         <tr>
           <th scope="row"><%= t(User.human_attribute_name(:name)) %></th>
-          <td><%= current_user.name %></td>
+          <td><%= @user.name %> </td>
         </tr>
         <tr>
           <th scope="row"><%= t(User.human_attribute_name(:picture)) %></th>

@@ -14,6 +14,7 @@ ja:
         name: 名前
         email: メールアドレス
         password: パスワード
+        picture: 写真　
       post:
         content: 説明
         image: 画像
