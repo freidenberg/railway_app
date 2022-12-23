@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :home, only: [:mypage]
   
  get "profile/edit", to: "profiles#edit", as: "edit_profile"
- patch "/profile", to: "profiles#update"
+ patch "/profiles", to: "profiles#update"
 
   devise_for :users
   root to: "home#top/:id", :to => 'home#top'
