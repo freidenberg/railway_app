@@ -32,13 +32,7 @@ class HomeController < ApplicationController
       end
     end
   end 
-  def show 
-    #@user = User.find(params[:id])
-    @post = Post.find(params[:id])
-    @comments = @post.comments.includes(:user).all #投稿詳細に関連付けてあるコメントを全取得
-    @comment = current_user.comments.new  #投稿詳細画面でコメントの投稿を行うので、formのパラメータ用にCommentオブジェクトを取得
-    @comment_reply = @post.comments.build #コメントに対する返信用の変数
-  end
+  
 
   def mypage 
     @bookmarks = Bookmark.where(user_id: current_user.id)   

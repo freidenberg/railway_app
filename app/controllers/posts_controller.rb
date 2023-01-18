@@ -14,23 +14,30 @@ class PostsController < ApplicationController
        end
     end
 
+    def show 
+      #@user = User.find(params[:id])
+      @post = Post.find(params[:id])
+      @comments = @post.comments.includes(:user).all #投稿詳細に関連付けてあるコメントを全取得
+      @comment = current_user.comments.new  #投稿詳細画面でコメントの投稿を行うので、formのパラメータ用にCommentオブジェクトを取得
+      @comment_reply = @post.comments.build #コメントに対する返信用の変数
+    end
+
     def edit
       #@user.image.cache! unless @user.image.blank? 
       @post = Post.find(params[:id])
     end
 
     def update
-      @post = Post.find(params[:id])
+      @post = Post.find_by(params[:id])
+      @post.body = params[:body] 
+      @post.image = params[:image] 
+      @post.save 
     # 編集ページの送信ボタンから飛んできたときのparamsに格納されたidを元に、該当する投稿データを探して、変数に代入する
-      if @post.update(post_path)
         redirect_to post_path, notice: "投稿を編集しました"
-      else
-        flash.now[:danger] = "編集に失敗しました"
-        render 'edit'
-      end
+    end 
+
   private
   def post_params #ストロングパラメーター
     params.require(:post).permit(:body,{image: []},:image_cache,lines_tag_ids:[],genre_tag_ids:[]) 
   end
-end  
 end   

@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   resources :home, only: [:mypage]
   
   resource :profile,only: %i[edit update] do
-    post '/profile/:id', to: 'profile#update'
+    post '/profile/:id', to: 'profile#update'  
   end 
+
+  get "posts/:id/edit" => "posts#edit"
+  post  "posts/:id/update" => "posts#update"
 
   devise_for :users
   root to: "home#top/:id", :to => 'home#top'
