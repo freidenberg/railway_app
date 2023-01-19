@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  post '/home/guest_sign_in', to: 'home#guest_sign_in'
   get 'home/top'
   resources :home, only: [:mypage]
   
  get "profile/edit", to: "profiles#edit", as: "edit_profile"
  patch "/profiles", to: "profiles#update"
+ 
+  
 
   devise_for :users
   root to: "home#top/:id", :to => 'home#top'

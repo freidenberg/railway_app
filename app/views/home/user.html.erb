@@ -1,7 +1,7 @@
 
 -------<br>
 
-<%= current_user.name %>
+<%= @post.user.name%>
 <p><%= link_to @user.followings.count,user_followings_path(@user)%> フォロー <%= link_to @user.followers.count, user_followers_path(@user) %> フォロワー</p>
 <%= link_to 'topへ戻る', root_path %>
 <% if @user == current_user %>

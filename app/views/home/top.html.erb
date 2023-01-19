@@ -6,11 +6,10 @@
  <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
  <%= link_to "ブックマーク", mypage_path(current_user.id) %> 
  <%= link_to "マイページ", userpage_path(current_user.id) %> 
-
-
  <% else %>
   ログインしていません。<br>
  <%= link_to "ログイン", "/users/sign_in" %> 
+ <%= link_to 'ゲストログイン（閲覧用）', home_guest_sign_in_path, method: :post %>
 <% end %>
 
 <% if user_signed_in? %>
