@@ -13,26 +13,26 @@ class HomeController < ApplicationController
            if value == "1"
              lines_tag_posts = LinesTag.find_by(name: key).posts
              @posts = @posts.empty? ? lines_tag_posts : @posts & lines_tag_posts
-            end
-        end
+            end  
+          end
+      end
     end
   end
 
-   if  params[:genre_tag_ids]
+   #if  params[:genre_tag_ids]
       # genre_tag_idsの中でチェックをしたものだけ取得して変数に格納
-      lines_tags = params[:genre_tag_ids].select { |key, value| value == "1" }
+      #lines_tags = params[:genre_tag_ids].select { |key, value| value == "1" }
       # 空でなければ条件の中に入る ⇨ 空でないということはチェックをしたものがあるということ。
-      unless lines_tags.blank?
-        @posts = []
-        params[:genre_tag_ids].each do |key, value| 
-          if value == "1"
-            genre_tag_posts = GenreTag.find_by(name: key).posts
-            @posts = @posts.empty? ? genre_tag_posts : @posts & genre_tag_posts
-          end
-        end
-      end
-    end
-  end 
+      #unless lines_tags.blank?
+        #@posts = []
+        #params[:genre_tag_ids].each do |key, value| 
+          #if value == "1"
+            #genre_tag_posts = GenreTag.find_by(name: key).posts
+            #@posts = @posts.empty? ? genre_tag_posts : @posts & genre_tag_posts
+          #end
+        #end
+      #end
+    #end
 
   def guest_sign_in
     user = User.find_or_create_by!(email: 'guest@example.com') do |user|
@@ -73,9 +73,10 @@ class HomeController < ApplicationController
       redirect_back(fallback_location: root_path)  #同上
     end
   end
-
+  
   private
   def post_params
     params.require(:post).permit(:post_content)
   end
 end  
+

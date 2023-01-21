@@ -19,9 +19,7 @@
      <% LinesTag.all.each do |t| %>
        <li><%= check_box :lines_tag_ids, t.name %><%= t.name %></li>
      <% end %>
-     <% GenreTag.all.each do |t| %>
-       <li><%= check_box :genre_tag_ids, t.name %><%= t.name %></li>
-    <% end %>  
+     
    <%= submit_tag '検索' %>
  <% end %>
 
