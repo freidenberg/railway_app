@@ -9,9 +9,7 @@
    <span><%= lines_tag.name %><br></span>
 <% end %>
 
-<% @post.genre_tags.each do |genre_tags| %>
-   <span><%= genre_tags.name %><br></span>
-<% end %>
+
 
 <% if @post.liked?(current_user) %>
   <%= link_to post_likes_path(@post.id), method: :delete do %> <%= @post.likes.count %>

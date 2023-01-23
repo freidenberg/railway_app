@@ -13,8 +13,8 @@ class HomeController < ApplicationController
            if value == "1"
              lines_tag_posts = LinesTag.find_by(name: key).posts
              @posts = @posts.empty? ? lines_tag_posts : @posts & lines_tag_posts
-            end
-        end
+          end
+      end
     end
   end
 
