@@ -27,13 +27,13 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
-    def update
+    def update         
       @post = Post.find_by(params[:id])
-      @post.body = params[:body] 
-      @post.image = params[:image] 
-      @post.update
+      #@post.body = params[:body] 
+      #@post.image = params[:image] 
+      @post.update!(post_params) 
      # 編集ページの送信ボタンから飛んできたときのparamsに格納されたidを元に、該当する投稿データを探して、変数に代入する
-      if @post.body.empty? then 
+      if @post.empty? 
         redirect_to post_path, notice: "保存できませんでした"
         else
         redirect_to post_path, notice: "投稿を編集しました"
@@ -45,8 +45,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:body,{image: []},:image_cache,lines_tag_ids:[],genre_tag_ids:[]) 
   end
 
-  def update_params #ストロングパラメーター
-    params.require(:post).permit(:body,{image: []},:image_cache,lines_tag_ids:[],genre_tag_ids:[]) 
-  end
-
-end   
+  #def update_params #ストロングパラメーター
+   # params.require(:post).permit(:body,{image: []},:image_cache,lines_tag_ids:[],genre_tag_ids:[]) 
+  #end
+end

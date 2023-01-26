@@ -1,22 +1,22 @@
 <h1>投稿</h1>
-<%= form_with url: "/posts/#{@post.id}/update" do |form| %>
- <p><%= form.label :body %><br>
-  <%= form.text_area :body %> #bodyの入力フォーム生成
+<%= form_with model:@post do |f| %>
+ <p><%= f.label :body %><br>
+  <%= f.text_area :body %> #bodyの入力フォーム生成
  </p>
- <%= form.label :image %>
- <%= form.file_field :image, multiple: true %> 
- <%= form.hidden_field :image_cache %><br>
+ <%= f.label :image %>
+ <%= f.file_field :image, multiple: true %> 
+ <%= f.hidden_field :image_cache %><br>
 
- <%= form.collection_check_boxes(:lines_tag_ids, LinesTag.all, :id, :image) do |line_tag| %>
+ <%= f.collection_check_boxes(:lines_tag_ids, LinesTag.all, :id, :image) do |line_tag| %>
    <img src = "<%= line_tag.object.image %>">
    <%= line_tag.label %>
-   <%= line_tag.check_box class: 'form-check-input' %>  
+   <%= line_tag.check_box class: 'f-check-input' %>  
 <% end %>
 
-<%= form.collection_check_boxes(:genre_tag_ids, GenreTag.all, :id, :name) do |genre_tag| %>
+<%= f.collection_check_boxes(:genre_tag_ids, GenreTag.all, :id, :name) do |genre_tag| %>
  <%= genre_tag.label %>
  <%= genre_tag.check_box class: 'form-check-input' %>
 <% end %>
 
- <p> <%= form.submit %> #送信ボタンを生成</p>
+ <p> <%= f.submit %> #送信ボタンを生成</p>
 <% end %>
