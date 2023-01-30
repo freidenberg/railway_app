@@ -33,11 +33,9 @@ class PostsController < ApplicationController
       #@post.image = params[:image] 
       @post.update!(post_params) 
      # 編集ページの送信ボタンから飛んできたときのparamsに格納されたidを元に、該当する投稿データを探して、変数に代入する
-      if @post.empty? 
-        redirect_to post_path, notice: "保存できませんでした"
-        else
+
         redirect_to post_path, notice: "投稿を編集しました"
-      end
+    
     end 
 
   private
