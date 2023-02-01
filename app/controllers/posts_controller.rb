@@ -28,7 +28,7 @@ class PostsController < ApplicationController
     end
 
     def update         
-      @post = Post.find_by(params[:id])
+      @post = Post.find(params[:id])
       #@post.body = params[:body] 
       #@post.image = params[:image] 
       @post.update!(post_params) 
