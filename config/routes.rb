@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get "posts/:id/edit" => "posts#edit"
   post  "posts/:id/update" => "posts#update"
+  post  "posts/:id/destroy" => "posts#destroy"
 
   devise_for :users
   root to: "home#top/:id", :to => 'home#top'
