@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   end 
 
   get "posts/:id/edit" => "posts#edit"
-  post  "posts/:id/update" => "posts#update"
-  post  "posts/:id/destroy" => "posts#destroy"
+  #post  "posts/:id/update" => "posts#update"
+  #post  "posts/:id/destroy" => "posts#destroy"
+  resources :posts, only: [:update,:destroy]
 
   devise_for :users
   root to: "home#top/:id", :to => 'home#top'

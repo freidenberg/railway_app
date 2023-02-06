@@ -30,6 +30,7 @@
 <% end %>
 
 <br><%= link_to"編集", "/posts/#{@post.id}/edit" %>
+<%= link_to "削除", "/posts/#{@post.id}",method: :delete %>
    
 <h2> コメントをする </h2>
 <%= form_with(model:[@post, @comment], method: :post) do |f| %>
