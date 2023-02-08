@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   
     serialize :image,JSON
     has_many_attached :image
-    has_many :comments, dependent: :destroy 
+   has_many :comments, dependent: :destroy 
     has_many :likes, dependent: :destroy
     has_many :bookmarks, dependent: :destroy
     has_many :line_tag_relations, dependent: :destroy

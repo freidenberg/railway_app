@@ -9,7 +9,7 @@
 
  <%= form.collection_check_boxes(:lines_tag_ids, LinesTag.all, :id, :image) do |line_tag| %>
    <img src = "<%= line_tag.object.image %>">
-   <%= line_tag.name %>
+   <%= line_tag.label %>
    <%= line_tag.check_box class: 'form-check-input' %>  
 <% end %>
 
