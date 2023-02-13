@@ -1,13 +1,15 @@
 <h1>Home#top</h1>
 <% if current_user %>
-<h2><strong>ログイン中です</strong></h2>
+ <h2><strong>ログイン中です</strong></h2>
 
 
-<%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
-
-<% else %>
-ログインしていません。<br>
-<%= link_to "ログイン", "/users/sign_in" %>
+ <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
+ <%= link_to "ブックマーク", mypage_path(current_user.id) %> 
+ <%= link_to "マイページ", userpage_path(current_user.id) %> 
+ <% else %>
+  ログインしていません。<br>
+ <%= link_to "ログイン", "/users/sign_in" %> 
+ <%= link_to 'ゲストログイン（閲覧用）', home_guest_sign_in_path, method: :post %>
 <% end %>
 
 <% if user_signed_in? %>
@@ -19,25 +21,22 @@
      <% end %>
      <% GenreTag.all.each do |t| %>
        <li><%= check_box :genre_tag_ids, t.name %><%= t.name %></li>
-     <% end %>
+    <% end %>  
    <%= submit_tag '検索' %>
-  <% end %>
+ <% end %>
 
  <h2>投稿一覧</h2><br>
-  <% @posts.each do |post| %>
-      <tr>
-        <% post.image.each do |img|%>
+ <% @posts.each do |post| %>
+    <tr>
+      <% post.image.each do |img|%>
          <%= image_tag img.to_s%>
-        <% end %> 
-        <p><td><%= post.body %></td></p>
-        <p><td><%= post.user_id %></td></p>
-        <p><td><%= post.created_at %></td></p>
-        <p><td><%= link_to '投稿詳細ページ', "/home/show/#{post.id}" %></td></p> 
-        <hr>
-      </tr>
+      <% end %> 
+      <p><td><%= post.body %></td></p>
+      <p><td><%= post.user_id %></td></p>
+      <p><td><%= post.created_at %></td></p>
+      <p><td><%= link_to '投稿詳細ページ', "/home/show/#{post.id}" %></td></p> 
+      <hr>
+   </tr>
   <% end %>
-<% end %> 
-
-
-
-
+  
+<% end %>  

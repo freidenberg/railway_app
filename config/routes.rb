@@ -1,23 +1,33 @@
 Rails.application.routes.draw do
-  get 'relationships/followings'
-  get 'relationships/followers'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  post '/home/guest_sign_in', to: 'home#guest_sign_in'
   get 'home/top'
+  resources :home, only: [:mypage]
+  
+ get "profile/edit", to: "profiles#edit", as: "edit_profile"
+ patch "/profiles", to: "profiles#update"
+ 
+  
+
   devise_for :users
-  root to: "home#top"
+  root to: "home#top/:id", :to => 'home#top'
+  get 'home/mypage/:id', :to => 'home#mypage',  as: :mypage 
+  get 'home/user/:id', :to => 'home#user', as: :userpage 
+  #get 'home/mypage'
   get 'home/show/:id', :to => 'home#show'
-  resources :posts do  #postsコントローラへのルーティング  
-  resources :comments, only: [:create]  #commentsコントローラへのルーティング
-  resource :likes, only: [:create, :destroy]
-  #resources :posts コメント機能参考記事では posts do と書いている
-  #resources :comments, only: [:create] 
-  resource :bookmarks, only: [:create, :destroy]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
   resources :users do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
- end
-end
+  end
+
+  resources :posts do  #postsコントローラへのルーティング  
+   resources :comments, only: [:create]  #commentsコントローラへのルーティング
+   resource :likes, only: [:create, :destroy]
+   resource :bookmarks, only: [:create, :destroy]
+  end
+   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
 end 
 

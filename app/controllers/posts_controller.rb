@@ -6,9 +6,12 @@ class PostsController < ApplicationController
       #binding.pry
         @post = Post.new(post_params) #データを新規登録するためのインスタンス生成
         @post.user_id = current_user.id
-        @post.save#データをデータベースに保存するためのsaveメソッド実行
-        #redirect_to action: 'index' #トップ画面へリダイレクト
-        redirect_to root_path
+       if @post.save#データをデータベースに保存するためのsaveメソッド実行
+          #redirect_to action: 'index' #トップ画面へリダイレクト
+          redirect_to root_path
+          else 
+          render 'new'
+       end
     end
     def edit
       @user.image.cache! unless @user.image.blank?

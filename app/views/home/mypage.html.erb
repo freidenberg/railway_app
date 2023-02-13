@@ -1,0 +1,15 @@
+
+<h1>ブックマーク一覧</h1>
+<%= link_to 'topへ戻る', root_path %>
+
+<% @bookmarks.each do |bookmark| %>
+  <% @post = Post.find_by(id: bookmark.post_id) %> 
+  <% @post.image.each do |img|%>
+      <%= image_tag img.to_s%>   
+  <%end%>   
+  <p><%= @post.body %></p>
+  <p><%= link_to '投稿詳細ページ', "/home/show/#{@post.id}" %></p>
+<% end %>
+  
+<%= link_to 'topへ戻る', root_path %>
+
