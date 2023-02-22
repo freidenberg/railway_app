@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+
     def new
         @post = Post.new 
     end
@@ -24,19 +25,30 @@ class PostsController < ApplicationController
 
     def edit 
       @post = Post.find(params[:id])
+      unless @post.user == current_user
+        redirect_to  root_path
+      end
     end
 
     def update         
       @post = Post.find(params[:id])
-      @post.update!(post_params) 
-     # 編集ページの送信ボタンから飛んできたときのparamsに格納されたidを元に、該当する投稿データを探して、変数に代入する
-        redirect_to post_path, notice: "投稿を編集しました"
+      if @post.user != current_user
+        redirect_to  root_path
+       else
+        @post.update!(post_params) 
+        # 編集ページの送信ボタンから飛んできたときのparamsに格納されたidを元に、該当する投稿データを探して、変数に代入する
+         redirect_to root_path, notice: "投稿を編集しました"
+      end    
     end 
 
     def destroy
       @post = Post.find(params[:id])
-      @post.destroy 
-      redirect_to root_path, notice: "削除しました"
+      if @post.user != current_user
+        redirect_to  root_path
+       else
+       @post.destroy 
+       redirect_to root_path, notice: "削除しました"
+      end
     end  
 
   private
@@ -44,7 +56,6 @@ class PostsController < ApplicationController
     params.require(:post).permit(:body,{image: []},:image_cache,lines_tag_ids:[],genre_tag_ids:[]) 
   end
 
-  #def update_params #ストロングパラメーター
-   # params.require(:post).permit(:body,{image: []},:image_cache,lines_tag_ids:[],genre_tag_ids:[]) 
-  #end
 end
+
+

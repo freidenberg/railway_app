@@ -1,6 +1,5 @@
 <h2> 投稿詳細 </h2>
 <% @post.image.each do |img|%>
-    
     <%= image_tag img.to_s%>
 <%end%>
 <p>投稿者<a href="/home/user/<%= @post.user_id%>"><%= @post.user.name%></a><br><%= @post.body %></p>
@@ -29,8 +28,11 @@
       <td><%= link_to "ブックマーク", post_bookmarks_path(@post), method: :post %></td>
 <% end %>
 
-<br><%= link_to"編集", "/posts/#{@post.id}/edit" %>
-<%= link_to "削除", "/posts/#{@post.id}",method: :delete %>
+<% if @post.user == current_user %>
+  <%= link_to"編集", "/posts/#{@post.id}/edit" %>
+  <%= link_to "削除", "/posts/#{@post.id}",method: :delete %>
+<% end %> 
+ 
    
 <h2> コメントをする </h2>
 <%= form_with(model:[@post, @comment], method: :post) do |f| %>
