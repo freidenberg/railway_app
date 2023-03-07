@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
          else
           redirect_back(fallback_location: root_path)  #同上
         end
-      end
+      end 
     end
       private
       def comment_params

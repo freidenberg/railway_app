@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'home/top'
   resources :home, only: [:mypage]
+ 
   
   resource :profile,only: %i[edit update] do
     post '/profile/:id', to: 'profile#update'  
@@ -14,6 +15,8 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to: "home#top/:id", :to => 'home#top'
+  resources :messages, :only => [:create]
+  resources :rooms, :only => [:create, :show, :inbox]
   get 'home/mypage/:id', :to => 'home#mypage',  as: :mypage 
   get 'home/user/:id', :to => 'home#user', as: :userpage 
   #get 'home/mypage'

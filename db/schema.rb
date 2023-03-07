@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_23_065959) do
+ActiveRecord::Schema.define(version: 2023_03_01_105228) do
 
   create_table "bookmarks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -82,6 +82,16 @@ ActiveRecord::Schema.define(version: 2023_02_23_065959) do
     t.string "image"
   end
 
+  create_table "messages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "posts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "text"
     t.string "body"
@@ -139,4 +149,6 @@ ActiveRecord::Schema.define(version: 2023_02_23_065959) do
   add_foreign_key "likes", "users"
   add_foreign_key "line_tag_relations", "lines_tags"
   add_foreign_key "line_tag_relations", "posts"
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
 end

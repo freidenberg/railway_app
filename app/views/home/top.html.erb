@@ -4,10 +4,7 @@
 
 
  <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
- <%= link_to "ブックマーク", mypage_path(current_user.id) %> 
- <%= link_to "マイページ", userpage_path(current_user.id) %> 
-
-
+ ブックマーク
  <% else %>
   ログインしていません。<br>
  <%= link_to "ログイン", "/users/sign_in" %> 
@@ -15,6 +12,8 @@
 
 <% if user_signed_in? %>
  <%= button_to "投稿", "/posts/new", {method: :get} %>
+ 
+
 
   <%= form_tag({controller:"home",action:"top"}, method: :get) do %>
      <% LinesTag.all.each do |t| %>

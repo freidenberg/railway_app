@@ -6,7 +6,7 @@
 
 
 
-<% @post.lines_tag.each do |lines_tag| %>
+<% @post.lines_tag.each do |lines_tag| %> 
    <span><%= lines_tag.name %><br></span>
 <% end %>
 
@@ -54,7 +54,7 @@
        <% next %>
      <% end %>
        <hr>
-       <p> <a href="/home/user/<%= @post.user_id%>"><%= comment.user.name %></a> :<%=comment.comment_content%> </p>
+       <p> <a href="/home/user/<%= comment.user_id%>"><%= comment.user.name %></a> :<%=comment.comment_content%> </p>
        <p> date : <%=comment.created_at.strftime("%Y-%m-%d %H:%M") %>
      <div id="reply_area">
          <% comment.replies.order(:created_at).each do |reply| %>
@@ -79,11 +79,6 @@
   </div>
 
   
-<% if  @post_like.present? %>
-  <h1>早くエラーなおれ</h1>
-  <% else %>
-  <h1>中身がありません</h1>
-<%end%>  
 
 
 

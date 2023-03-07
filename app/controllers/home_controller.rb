@@ -1,8 +1,6 @@
 class HomeController < ApplicationController
   def top
     @posts = Post.all.order("id desc")
-    #@user = User.find(params[:id])
-    #@posts = current_user.posts.all.order("id desc")
     if params[:lines_tag_ids]
       # lines_tag_idsの中でチェックをしたものだけ取得して変数に格納
       lines_tags = params[:lines_tag_ids].select { |key, value| value == "1" }
@@ -38,16 +36,34 @@ class HomeController < ApplicationController
   def mypage 
     @bookmarks = Bookmark.where(user_id: current_user.id)   
     @user = User.find(params[:id])
-    @post = Post.find(params[:id])
-    #@username = current_user.name   
+    @post = Post.find(params[:id])  
     logger.debug("デバッグ")          
   end   
 
 def user
   @user = User.find(params[:id])
+  @currentUserEntry=Entry.where(user_id: current_user.id)
+    @userEntry=Entry.where(user_id: @user.id)
+    if @user.id == current_user.id
+    else
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+      if @isRoom
+      else
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
+  end
 end  
 
-
+ 
 
   def create
     @post = current_user.posts.new(post_params)
@@ -62,4 +78,4 @@ end
   def post_params
     params.require(:post).permit(:post_content)
   end
-end  
+
