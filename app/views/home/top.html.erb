@@ -10,6 +10,10 @@
  <%= link_to "ログイン", "/users/sign_in" %> 
 <% end %>
 
+
+<%= link_to "マイページ" , "/home/user/#{current_user.id}" %>
+
+
 <% if user_signed_in? %>
  <%= button_to "投稿", "/posts/new", {method: :get} %>
  
