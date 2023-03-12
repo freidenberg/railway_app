@@ -16,22 +16,6 @@ class HomeController < ApplicationController
     end
   end
 
-   if  params[:genre_tag_ids]
-      # genre_tag_idsの中でチェックをしたものだけ取得して変数に格納
-      lines_tags = params[:genre_tag_ids].select { |key, value| value == "1" }
-      # 空でなければ条件の中に入る ⇨ 空でないということはチェックをしたものがあるということ。
-      unless lines_tags.blank?
-        @posts = []
-        params[:genre_tag_ids].each do |key, value| 
-          if value == "1"
-            genre_tag_posts = GenreTag.find_by(name: key).posts
-            @posts = @posts.empty? ? genre_tag_posts : @posts & genre_tag_posts
-          end
-        end
-      end
-    end
-  end 
-
   def guest_sign_in
     user = User.find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
@@ -58,9 +42,12 @@ class HomeController < ApplicationController
     logger.debug("デバッグ")          
   end   
 
+  def bookmark
+    @bookmarks = Bookmark.where(user_id: current_user.id)
+  end 
+
 
 def user
-  @post = Post.find(params[:id])
   @user = User.find(params[:id])
   @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)

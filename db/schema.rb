@@ -42,21 +42,6 @@ ActiveRecord::Schema.define(version: 2023_03_01_105228) do
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
-  create_table "genre_tag_relations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "post_id", null: false
-    t.bigint "genre_tag_id", null: false
-    t.index ["genre_tag_id"], name: "index_genre_tag_relations_on_genre_tag_id"
-    t.index ["post_id"], name: "index_genre_tag_relations_on_post_id"
-  end
-
-  create_table "genre_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "likes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "post_id", null: false
@@ -143,8 +128,6 @@ ActiveRecord::Schema.define(version: 2023_03_01_105228) do
   add_foreign_key "comments", "users"
   add_foreign_key "entries", "rooms"
   add_foreign_key "entries", "users"
-  add_foreign_key "genre_tag_relations", "genre_tags"
-  add_foreign_key "genre_tag_relations", "posts"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "line_tag_relations", "lines_tags"

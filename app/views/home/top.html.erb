@@ -3,7 +3,6 @@
  <h2><strong>ログイン中です</strong></h2>
 
  <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
- ブックマーク
  <% else %>
   ログインしていません。<br>
  <%= link_to "ログイン", "/users/sign_in" %> 
@@ -11,21 +10,16 @@
 <% end %>
 
 
-<%= link_to "マイページ" , "/home/user/#{current_user.id}" %> 
-
-
 <% if user_signed_in? %>
+ <%= link_to "マイページ" , "/home/user/#{current_user.id}" %> 
  <%= button_to "投稿", "/posts/new", {method: :get} %>
  
-
 
   <%= form_tag({controller:"home",action:"top"}, method: :get) do %>
      <% LinesTag.all.each do |t| %>
        <li><%= check_box :lines_tag_ids, t.name %><%= t.name %></li>
-     <% end %>
-     <% GenreTag.all.each do |t| %>
-       <li><%= check_box :genre_tag_ids, t.name %><%= t.name %></li>
-    <% end %>  
+  <% end %>
+    
    <%= submit_tag '検索' %>
  <% end %>
 
