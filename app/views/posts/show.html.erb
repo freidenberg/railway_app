@@ -1,19 +1,18 @@
 <h2> 投稿詳細 </h2>
+
 <% @post.image.each do |img|%>
-    
     <%= image_tag img.to_s%>
 <%end%>
 <p>投稿者<a href="/home/user/<%= @post.user_id%>"><%= @post.user.name%></a><br><%= @post.body %></p>
 
-<% @post.lines_tag.each do |lines_tag| %>
+
+
+<% @post.lines_tag.each do |lines_tag| %> 
    <span><%= lines_tag.name %><br></span>
 <% end %>
 
 
-
-
 <% if @post.liked?(current_user) %>
-
   <%= link_to post_likes_path(@post.id), method: :delete do %> <%= @post.likes.count %>
      <span style="color:red;">❤︎</span>
   <% end %>
@@ -22,21 +21,25 @@
     <span>❤︎</span> 
  <% end %>
 <% end %>
-
-<% if @post.bookmarked_by?(current_user) %>
+  
+<% if @post.bookmarked_by?(current_user) %>  
       <td><%= link_to "ブックマークを外す", post_bookmarks_path(@post), method: :delete %></td>
     <% else %>
       <td><%= link_to "ブックマーク", post_bookmarks_path(@post), method: :post %></td>
 <% end %>
 
-   
+<% if @post.user == current_user %>
+  <%= link_to"編集", "/posts/#{@post.id}/edit" %>
+  <%= link_to "削除", "/posts/#{@post.id}",method: :delete %>
+<% end %> 
+
+ 
 <h2> コメントをする </h2>
 <%= form_with(model:[@post, @comment], method: :post) do |f| %>
-   <%= f.text_area :comment_content %>
+   <p class = "comment"><%= f.text_area :comment_content %></p> 
    <%= f.hidden_field :post_id, value: @post.id %>
-   <%= f.submit 'コメントする' %>
+   <%= f.submit 'コメントする' %>  
 <% end%>
-   
    <%= link_to 'topへ戻る', root_path %>
  <hr> 
 
@@ -50,7 +53,7 @@
        <% next %>
      <% end %>
        <hr>
-       <p> <a href="/home/user/<%= @post.user_id%>"><%= comment.user.name %></a> :<%=comment.comment_content%> </p>
+       <p> <a href="/home/user/<%= comment.user_id%>"><%= comment.user.name %></a> :<%=comment.comment_content%> </p>
        <p> date : <%=comment.created_at.strftime("%Y-%m-%d %H:%M") %>
      <div id="reply_area">
          <% comment.replies.order(:created_at).each do |reply| %>
@@ -61,7 +64,7 @@
           <div class="row">
                <div class="form-group col-md-6">
                   <p><label>Reply</label></p>
-                   <textarea class="form-control input-form" name="comment[comment_content]" rows="2">
+                   <textarea class="form-control input-form" name="comment[comment_content]" rows="2" class="comment">
                    <%=@comment_reply.comment_content%></textarea>
                </div>
           </div>
@@ -75,10 +78,6 @@
   </div>
 
 
-<% if  @post_like.present? %>
-  <h1>早くエラーなおれ</h1>
-  <% else %>
-  <h1>中身がありません</h1>
-
-<%end%>  
+  
+>>>>>>> develop10_EDITPOST:app/views/posts/show.html.erb
 

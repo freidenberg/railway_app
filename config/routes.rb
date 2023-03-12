@@ -3,14 +3,22 @@ Rails.application.routes.draw do
   post '/home/guest_sign_in', to: 'home#guest_sign_in'
   get 'home/top'
   resources :home, only: [:mypage]
-  
+ 
+
  get "profile/edit", to: "profiles#edit", as: "edit_profile"
  patch "/profiles", to: "profiles#update"
  
-  
+
+
+  get "posts/:id/edit" => "posts#edit"
+  #post  "posts/:id/update" => "posts#update"
+  #post  "posts/:id/destroy" => "posts#destroy"
+  resources :posts, only: [:update,:destroy]
 
   devise_for :users
   root to: "home#top/:id", :to => 'home#top'
+  resources :messages, :only => [:create]
+  resources :rooms, :only => [:create, :show, :inbox]
   get 'home/mypage/:id', :to => 'home#mypage',  as: :mypage 
   get 'home/user/:id', :to => 'home#user', as: :userpage 
   #get 'home/mypage'
