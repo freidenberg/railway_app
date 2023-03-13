@@ -1,31 +1,29 @@
 <h1>Home#top</h1>
 <% if current_user %>
- <h2><strong>ログイン中です</strong></h2>
+ <h2><strong>ログイン中です</strong></h2> 
 
  <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
  <% else %>
-  ログインしていません。<br>
+  ログインしていません。<br> 
  <%= link_to "ログイン", "/users/sign_in" %> 
  <%= link_to 'ゲストログイン（閲覧用）', home_guest_sign_in_path, method: :post %>
 <% end %>
 
-
 <% if user_signed_in? %>
  <%= link_to "マイページ" , "/home/user/#{current_user.id}" %> 
+ <%= link_to "ブックマーク" , "/bookmark" %> 
  <%= button_to "投稿", "/posts/new", {method: :get} %>
  
-
   <%= form_tag({controller:"home",action:"top"}, method: :get) do %>
-     <% LinesTag.all.each do |t| %>
+     <% LinesTag.all.each do |t| %> 
        <li><%= check_box :lines_tag_ids, t.name %><%= t.name %></li>
-  <% end %>
-    
+  <% end %>   
    <%= submit_tag '検索' %>
  <% end %>
 
  <h2>投稿一覧</h2><br>
  <% @posts.each do |post| %>
-    <tr>
+    <tr>    
       <% post.image.each do |img|%>
          <%= image_tag img.to_s%>
       <% end %> 
@@ -36,5 +34,4 @@
       <hr>
    </tr>
   <% end %>
-  
 <% end %>  

@@ -1,11 +1,10 @@
 
-<% if @user == current_user %>  
  <table>
   <caption>ブックマーク一覧</caption>
   <thead>
     <tr>
       <th>投稿者名</th>
-      <th>タイトル</th>
+      <th>タイトル</th> 
       <th>本文</th>
     </tr>
   </thead>
@@ -15,8 +14,8 @@
         <td><%= bookmark.post.user.name %></td>
         <td>
          <% bookmark.image.each do |img|%>
-           <%= image_tag img.to_s%>
-        <% end %> 
+          <%= image_tag img.to_s%>
+         <% end %> 
         </td>
         <td><%= bookmark.post.body %></td>
         <td><%= link_to '投稿詳細ページ', "/posts/#{post.id}" %></td>
@@ -24,4 +23,4 @@
     <% end %>
   </tbody>
   </table>
-<% end %>
+  
