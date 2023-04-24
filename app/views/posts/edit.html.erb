@@ -13,10 +13,6 @@
    <%= line_tag.check_box class: 'f-check-input' %>  
 <% end %>
 
-<%= f.collection_check_boxes(:genre_tag_ids, GenreTag.all, :id, :name) do |genre_tag| %>
- <%= genre_tag.label %>
- <%= genre_tag.check_box class: 'form-check-input' %>
-<% end %>
 
  <p> <%= f.submit %> #送信ボタンを生成</p>
 <% end %>

@@ -1,37 +1,56 @@
-<h1>Home#top</h1>
-<% if current_user %>
- <h2><strong>ログイン中です</strong></h2> 
+<!DOCTYPE html>
 
- <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
- <% else %>
-  ログインしていません。<br> 
- <%= link_to "ログイン", "/users/sign_in" %> 
- <%= link_to 'ゲストログイン（閲覧用）', home_guest_sign_in_path, method: :post %>
-<% end %>
+<head>
+ <meta name="viewport" content="width=device-Width">
+ <%= stylesheet_link_tag 'home', media: 'all', 'data-turbolinks-track': 'reload' %> 
+</head>
 
-<% if user_signed_in? %>
- <%= link_to "マイページ" , "/home/user/#{current_user.id}" %> 
- <%= link_to "ブックマーク" , "/bookmark" %> 
- <%= button_to "投稿", "/posts/new", {method: :get} %>
- 
-  <%= form_tag({controller:"home",action:"top"}, method: :get) do %>
-     <% LinesTag.all.each do |t| %> 
-       <li><%= check_box :lines_tag_ids, t.name %><%= t.name %></li>
-  <% end %>   
-   <%= submit_tag '検索' %>
- <% end %>
 
- <h2>投稿一覧</h2><br>
+<header>
+  <%= image_tag 'logo.png'%>
+   <div>
+    <% if user_signed_in? %>
+    <p>
+    <%= button_to "🏠 マイページ", "/home/user/#{current_user.id}", method: :get, class: "my-button-class" %>
+    <%= button_to "+ 投稿", "/posts/new", method: :get, class: "my-button-class" %>
+  </p>  
+       <span style="float: right;">
+          <%= link_to "ログアウト",destroy_user_session_path, method: :delete %></p>
+       </span>  
+       <% else %>
+       <strong>ログインしていません。</strong><br> 
+       <%= link_to "ログイン", "/users/sign_in" %> 
+       <%= link_to 'ゲストログイン（閲覧用）', home_guest_sign_in_path, method: :post %>
+    <% end %>
+  </div>
+  <br>
+</header>   
+
+<main>
+<div class="content">
  <% @posts.each do |post| %>
-    <tr>    
+    <tr>   
+      <p><td><strong><a href="/home/user/<%= post.user_id%>"><%= post.user.name %></a></strong></td></p> 
       <% post.image.each do |img|%>
-         <%= image_tag img.to_s%>
+          <%= image_tag img.to_s%>
       <% end %> 
       <p><td><%= post.body %></td></p>
-      <p><td><%= post.user_id %></td></p>
-      <p><td><%= post.created_at %></td></p>
-      <p><td><%= link_to '投稿詳細ページ', "/posts/#{post.id}" %></td></p> 
+      <p><td><%= post.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td></p>
+      <p><td><%= link_to '詳しく見る', "/posts/#{post.id}" %></td></p> 
       <hr>
-   </tr>
+     </tr>
   <% end %>
-<% end %>  
+</div>
+<br>
+<div class="search">
+<div class="search-inner">
+  <p><strong>タグ検索</strong></p>
+  <%= form_tag({controller:"home",action:"top"}, method: :get) do %>
+    <% LinesTag.all.each do |t| %> 
+       <li><%= check_box :lines_tag_ids, t.id %><%= t.name %></li>
+    <% end %> 
+    <%= submit_tag '検索' %>
+ <% end %>  
+</div>
+</div>
+</main>

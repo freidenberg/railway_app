@@ -1,3 +1,69 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+main{
+    display:flex;
+    background-color:#e0ffff;
+}
+
+.content{
+    width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+    text-align:center;
+}
+
+.button-wrapper {
+    display: flex; /* フレックスボックスを使用する */
+    float: left;
+  }
+  
+  /* ボタンにスタイルを追加 */
+  button {
+    margin: 0 10px;
+  }
+  
+  .my-button-class {
+    font-weight: bold;
+  }
+  
+
+.search{
+    position: sticky;
+    top: 0;
+    height: 50px;
+}
+
+.search-inner {
+    background-color: azure;
+    max-width: 600px; /* 適切な幅を指定する */
+    margin: 0 auto; /* 中央寄せする */
+    padding: 20px; /* 内側の余白を追加する */
+  }
+
+li{
+   list-style:none;
+} 
+
+
+.user-image {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+  }
+  
+  .user-name {
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .user-profile{
+    background-color: azure;
+  }
+
+  .user-posts{
+    background-color:#e0ffff;
+  }
+
