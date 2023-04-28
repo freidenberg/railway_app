@@ -7,26 +7,29 @@
 
 
 <header>
-  <%= image_tag 'logo.png'%>
+     <%= image_tag 'logo.png' , class:'logo'%>
    <div>
     <% if user_signed_in? %>
     <p>
-    <%= button_to "🏠 マイページ", "/home/user/#{current_user.id}", method: :get, class: "my-button-class" %>
-    <%= button_to "+ 投稿", "/posts/new", method: :get, class: "my-button-class" %>
-  </p>  
+      <%= button_to "🏠 マイページ", "/home/user/#{current_user.id}", method: :get, class: "my-button-class" %>
+      <%= button_to "+ 投稿", "/posts/new", method: :get, class: "my-button-class" %>
+    </p>  
        <span style="float: right;">
           <%= link_to "ログアウト",destroy_user_session_path, method: :delete %></p>
        </span>  
        <% else %>
        <strong>ログインしていません。</strong><br> 
        <%= link_to "ログイン", "/users/sign_in" %> 
-       <%= link_to 'ゲストログイン（閲覧用）', home_guest_sign_in_path, method: :post %>
+       <%= link_to 'ゲストログイン', home_guest_sign_in_path, method: :post %>
+       <%= link_to t('アカウント新規作成'), new_user_registration_path %>
+     </div>
     <% end %>
   </div>
   <br>
 </header>   
 
-<main>
+<main>  
+<% if current_user %>
 <div class="content">
  <% @posts.each do |post| %>
     <tr>   
@@ -53,4 +56,5 @@
  <% end %>  
 </div>
 </div>
+<% end %> 
 </main>

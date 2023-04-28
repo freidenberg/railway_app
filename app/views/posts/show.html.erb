@@ -7,7 +7,9 @@
 
 <body class="background">
 <header>
-  <%= image_tag 'logo.png' %>
+<%= link_to root_path do %>
+   <%= image_tag 'logo.png' , class:'logo'%>
+<% end %>
 </header>
 
 <% @post.image.each do |img|%>
@@ -78,7 +80,7 @@
           <%= form.hidden_field :post_id, value: @post.id %>
           <%= form.hidden_field :parent_id, value: comment.id%>
           <div class="actions">
-             <%= form.submit %>
+             <%= form.submit '返信' %>
           </div>
      <% end %>
   <% end %>

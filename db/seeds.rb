@@ -16,11 +16,10 @@ LinesTag.create!([
   { image:"/JRmarks/n.png", name: '鳴門線' },
   { image:"/JRmarks/g.png", name: '予土線(しまんとグリーンライン)' },
   { image:"/JRmarks/t.png", name: '高徳線' },
-  { image:"/JRmarks/st.png", name: '瀬戸大橋線' }
-])
-
-GenreTag.create([
+  { image:"/JRmarks/st.png", name: '瀬戸大橋線' },
   { name: 'JR四国応援会議' },
   { name: '旅の思い出' },
-  { name: '旅の日程' },
+  { name: '旅の日程' }
 ])
+
+

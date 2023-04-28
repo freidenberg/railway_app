@@ -1,26 +1,29 @@
 <header>
-  <%= image_tag 'logo.png' %>
+<%= link_to root_path do %>
+  <%= image_tag 'logo.png' , class:'logo'%>
+<% end %>
 </header>  
 
 
-<h1>投稿</h1>
+<h1><strong>本文</strong></h1>
 <%= form_with model: @post, local: true do |form| %>
- <p>
-   <%= form.text_area :body %> 
- </p>
- <%= form.label :image %>
+ <%= form.text_area :body %>
+ <br>
+ <strong><%= form.label :image,"画像" %></strong>
+ <br>
  <%= form.file_field :image, multiple: true %> 
  <%= form.hidden_field :image_cache %><br>
 <strong>タグ設定</strong><br>
 
-<%= form.collection_check_boxes(:lines_tag_ids, LinesTag.all, :id, :image) do |line_tag| %>
-  <img src = "<%= line_tag.object.image %>">
-  <%= line_tag.label %>
-  <%= line_tag.check_box class: 'form-check-input' %>  
+<%= form.collection_check_boxes(:lines_tag_ids, LinesTag.all, :id, :name) do |line_tag| %>
+    <%= line_tag.label class: 'form-check-label' do %>
+    <%= line_tag.check_box class: 'form-check-input' %>
+    <%= line_tag.text %>
+    <br>
+  <% end %>
 <% end %>
 
-
-<p> <%= form.submit "投稿"%></p>
+<%= form.submit "投稿", class: "btn-strong" %>
 <% end %>
 
 <%= link_to 'topへ戻る', root_path %>
